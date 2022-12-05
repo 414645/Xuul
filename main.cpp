@@ -50,21 +50,63 @@ int main() {
   //variables needed later?
   bool quit = false;
   char input[80];
+
+  //char* for strtok start is first command end is second
+  //anthing after second ' ' is ignored
+  char* startInput = new char[40]; //should be 4 but I am paranoid
+  char* endInput = new char[40];
   
   //begin user input
   while (quit == false) {
     //char input[80];
     cin.getline(input, 80);
+    
+    //parse first and second word
+    //first figurs out # of spaces
+    //if 1 space runs first strtok
+    //if 2 runs second one
+    int spaceNumber = 0;
+    for (int a = 0; a < 80; a++) {
+      if (input[a] == ' ') {
+	spaceNumber++;
+      }
+    }
+    if (spaceNumber > 0) {
+      startInput = strtok(input, " "); 
+    }
+    if (spaceNumber > 1) {
+      endInput = strtok(NULL, " ");
+    }
+
+    //do something with the user input
     if (strcmp(input, "QUIT") == 0) {
       quit = true;
     }
     else if (strcmp(input, "HELP") == 0) {
+      //list commands
       cout << "The commands are:" << endl;
       cout << "GO <place>" << endl;
       cout << "GET <item>" << endl;
       cout << "DROP <item>" << endl;
+      cout << "LIST" << endl;
       cout << "HELP" << endl;
       cout << "QUIT" << endl;
+    }
+    else if (strcmp(input, "LIST") == 0) {
+      //list backpack
+      cout << "In your back pack you have: " << endl;
+    }
+    else if (strcmp(startInput, "GO") == 0) {
+      //
+      cout << "go" << endl;
+    }
+    else if (strcmp(startInput, "GET") == 0) {
+      //
+      cout << "get" << endl;
+    }
+    else if (strcmp(startInput, "DROP") == 0) {
+      //
+      cout << "drop" << endl;
     }
     else {
       cout << "command not recognized, type HELP" << endl;
