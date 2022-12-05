@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-//#ainclude <cstring
+#include <cstring>
 
 //#include room.h
 //#include item.h
@@ -44,5 +44,30 @@ QUIT
 //void listInventory
 
 int main() {
-  cout << "hello world" << endl;
+  //write a better into later
+  cout << "Xuul is a fun game, type HELP" << endl;
+
+  //variables needed later?
+  bool quit = false;
+  char input[80];
+  
+  //begin user input
+  while (quit == false) {
+    //char input[80];
+    cin.getline(input, 80);
+    if (strcmp(input, "QUIT") == 0) {
+      quit = true;
+    }
+    else if (strcmp(input, "HELP") == 0) {
+      cout << "The commands are:" << endl;
+      cout << "GO <place>" << endl;
+      cout << "GET <item>" << endl;
+      cout << "DROP <item>" << endl;
+      cout << "HELP" << endl;
+      cout << "QUIT" << endl;
+    }
+    else {
+      cout << "command not recognized, type HELP" << endl;
+    }
+  }
 }
