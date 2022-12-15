@@ -62,11 +62,12 @@ int main() {
 
   //create rooms
   char loretext[80] = "hello world :)";
-  char* description = loretext;
-  Room* a1 = new Room(description);
+  char* lorepointer = new char[80];
+  strcpy(lorepointer, "ello");
+  Room* a1 = new Room(lorepointer);
 
   cout << "Lore: " << loretext << endl;
-  cout << "Info: " << *description << endl;
+  cout << "Info: " << *lorepointer << endl;
   
   //create items
 

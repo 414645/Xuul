@@ -24,10 +24,14 @@ void Room::getDescription() {
   //go though itemlist and cout
 }
 
-void Room::addItem() {
-
+void Room::addItem(Item* thing) {
+  itemList.push_back(thing);
 }
 
-void Room::removeItem() {
-
+void Room::removeItem(Item* thing) {
+  for (int a = 0; a < itemList.size(); a++) {
+    //if (strcmp(itemList[a]->getName(), *thing) == 0) {
+    //  itemList.erase(itemList.begin()+a);
+    //}
+  }
 }
