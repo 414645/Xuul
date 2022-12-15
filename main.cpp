@@ -56,7 +56,22 @@ int main() {
   char* startInput = new char[40]; //should be 4 but I am paranoid
   char* endInput = new char[40];
 
+  //intilixation
   vector<Room*> roomList;
+  Room* currentRoom = new Room();
+
+  //create rooms
+  char loretext[80] = "hello world :)";
+  char* description = loretext;
+  Room* a1 = new Room(description);
+
+  cout << "Lore: " << loretext << endl;
+  cout << "Info: " << *description << endl;
+  
+  //create items
+
+  //starting room
+  currentRoom = a1;
   
   //begin user input
   while (quit == false) {
@@ -101,6 +116,10 @@ int main() {
     else if (strcmp(startInput, "GO") == 0) {
       //
       cout << "go" << endl;
+      currentRoom->getDescription();
+      //      if (strcmp(endImput, "UP") == 0) {
+	//go up
+      //}
     }
     else if (strcmp(startInput, "GET") == 0) {
       //

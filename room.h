@@ -10,7 +10,7 @@ using namespace std;
 class Room {
  public:
   Room();
-  //
+  Room(char*);
   //~Room //I think its never needed
   void getDescription();
   //I would say char* but just having the room describe iself
