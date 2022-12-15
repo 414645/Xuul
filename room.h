@@ -2,6 +2,10 @@
 #define Room_H
 
 #include <iostream>
+#include <vector>
+#include "item.h"
+
+using namespace std;
 
 class Room {
  public:
@@ -16,6 +20,7 @@ class Room {
  private:
   char* description;
   //list of items
+  vector<Item*> itemList;
   //exits
 };
 

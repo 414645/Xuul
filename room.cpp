@@ -16,6 +16,10 @@ Room::Room() {
 
 //~room //never destroy rooms
 
+void Room::getDescription() {
+  cout << description << endl;
+}
+
 void Room::addItem() {
 
 }

@@ -2,8 +2,8 @@
 #include <vector>
 #include <cstring>
 
-//#include room.h
-//#include item.h
+#include "room.h"
+#include "item.h"
 
 using namespace std;
 
@@ -55,6 +55,8 @@ int main() {
   //anthing after second ' ' is ignored
   char* startInput = new char[40]; //should be 4 but I am paranoid
   char* endInput = new char[40];
+
+  vector<Room*> roomList;
   
   //begin user input
   while (quit == false) {
