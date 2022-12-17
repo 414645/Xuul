@@ -10,6 +10,12 @@ using namespace std;
 //by Ryan Veith
 //12/16/2022
 //this is the main class of the Zuul assignemnt
+//it creats all the rooms, with thier description and exits
+//it creats items
+//it does the user interface
+
+//GO <invalid answer> defaults to NORTH
+
 /*
 4 by 4 = 16 rooms
 room.h
@@ -124,20 +130,122 @@ int main() {
   strcpy(d4text, "You are in room D4");
   Room* d4 = new Room(d4text);
   
-  //create exits (manual since easy enough)
-  //more because keep geting confused on
+  //create exits (manual since I keep mixing up rooms)
+  //also lets me play with non linear space without
+  //screwing everything up
+  //keep geting confused on
   //wraping the edges of the world
+  //(this is why letter# cordinats have been added)
+  //start a
   a1->addExit(a4); //north
   a1->addExit(b1); //east
   a1->addExit(a2); //south
   a1->addExit(d1); //west
   
+  a2->addExit(a1); //north
+  a2->addExit(b2); //east
+  a2->addExit(a3); //south
+  a2->addExit(d2); //west
+
+  a3->addExit(a2); //north
+  a3->addExit(b3); //east
+  a3->addExit(a4); //south
+  a3->addExit(d3); //west
+
+  a4->addExit(a3); //north
+  a4->addExit(b4); //east
+  a4->addExit(a1); //south
+  a4->addExit(d4); //west
+
+  //start b
+  b1->addExit(b4); //north
+  b1->addExit(c1); //east
+  b1->addExit(b2); //south
+  b1->addExit(a1); //west
   
-  //create items
+  b2->addExit(b1); //north
+  b2->addExit(c2); //east
+  b2->addExit(b3); //south
+  b2->addExit(a2); //west
+
+  b3->addExit(b2); //north
+  b3->addExit(c3); //east
+  b3->addExit(b4); //south
+  b3->addExit(a3); //west
+
+  b4->addExit(b3); //north
+  b4->addExit(c4); //east
+  b4->addExit(b1); //south
+  b4->addExit(a4); //west
+
+  //start c
+  c1->addExit(c4); //north
+  c1->addExit(d1); //east
+  c1->addExit(c2); //south
+  c1->addExit(b1); //west
+  
+  c2->addExit(c1); //north
+  c2->addExit(d2); //east
+  c2->addExit(c3); //south
+  c2->addExit(b2); //west
+
+  c3->addExit(c2); //north
+  c3->addExit(d3); //east
+  c3->addExit(c4); //south
+  c3->addExit(b3); //west
+
+  c4->addExit(c3); //north
+  c4->addExit(d4); //east
+  c4->addExit(c1); //south
+  c4->addExit(b4); //west
+
+  //start d
+  d1->addExit(d4); //north
+  d1->addExit(a1); //east
+  d1->addExit(d2); //south
+  d1->addExit(c1); //west
+  
+  d2->addExit(d1); //north
+  d2->addExit(a2); //east
+  d2->addExit(d3); //south
+  d2->addExit(c2); //west
+
+  d3->addExit(d2); //north
+  d3->addExit(a3); //east
+  d3->addExit(d4); //south
+  d3->addExit(c3); //west
+
+  d4->addExit(d3); //north
+  d4->addExit(a4); //east
+  d4->addExit(d1); //south
+  d4->addExit(c4); //west
+  
+  //create the items and put in rooms
+  //item 1: BOOK
   char* item1 = new char[10];
   strcpy(item1, "BOOK");
   Item* thing1 = new Item(item1);
   a1->addItem(thing1);
+  //item 2: CRYSTAL
+  char* item2 = new char[10];
+  strcpy(item2, "CRYSTAL");
+  Item* thing2 = new Item(item2);
+  a1->addItem(thing2);
+  //item 3: MAGIC (why is magic an item? becasue I said so
+  char* item3 = new char[10];
+  strcpy(item3, "MAGIC");
+  Item* thing3 = new Item(item3);
+  a1->addItem(thing3);
+  //item 4: GOAT (initial idea was bison in US history)
+  char* item4 = new char[10];
+  strcpy(item4, "GOAT");
+  Item* thing4 = new Item(item4);
+  a1->addItem(thing4);
+  //item 5: CD
+  char* item5 = new char[10];
+  strcpy(item5, "CD"); //music disk or something
+  Item* thing5 = new Item(item5);
+  a1->addItem(thing5);
   
   //starting room
   currentRoom = a1;
@@ -148,7 +256,7 @@ int main() {
   Room* inventory = new Room(backpack);
 
   //start text
-  //write a better into later
+  //write a better intro? I like this one though...
   cout << "Xuul is a fun game, type HELP!" << endl;
   
   //begin user input
@@ -199,15 +307,31 @@ int main() {
       inventory->getDescription();
     }
     else if (strcmp(startInput, "GO") == 0) {
-      //
-      //cout << "go" << endl;
       //currentRoom->getDescription();
-      //a1->getDescription();
       int endLocation = 0; //default north
+      //find direction
       if (strcmp(endInput, "NORTH") == 0) {
-        //go north
+        //cout << "go north";
 	endLocation = 0;
       }
+      if (strcmp(endInput, "EAST") == 0) {
+	//cout << "go east";
+	endLocation = 1;
+      }
+      if (strcmp(endInput, "SOUTH") == 0) {
+        //go south
+	endLocation = 2;
+      }
+      if (strcmp(endInput, "WEST") == 0) {
+        //go north
+	endLocation = 3;
+      }
+      if (strcmp(endInput, "PORTAL") == 0) {
+        //go north
+	endLocation = 4;
+      }
+      //go direction
+      cout << endLocation;
       currentRoom = currentRoom->getExit(endLocation);
       
     }
