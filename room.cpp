@@ -11,17 +11,23 @@ Room::Room() {
 }
 
 Room::Room(char* newDescription) {  //, vector location?) {
-  //strcpy(newDescription, description);
-  //description = newDescription;
+  strcpy(description, (newDescription));
+  cout << newDescription << endl;
+  cout << description << endl;
 }
 
 //~room //never destroy rooms
 
 void Room::getDescription() {
-  cout << "hello world";
-  cout << *description << endl;
-  cout << "On the floor you see:";
+  // cout << *description << endl;
+  cout << description << endl;
+  cout << "There is a: ";
   //go though itemlist and cout
+  for (int a = 0; a < itemList.size(); a++) {
+    cout << itemList[a]->getName() << " ";
+  }
+  cout << " " << endl;
+  
 }
 
 void Room::addItem(Item* thing) {

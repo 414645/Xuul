@@ -61,16 +61,17 @@ int main() {
   Room* currentRoom = new Room();
 
   //create rooms
-  char loretext[80] = "hello world :)";
-  char* lorepointer = new char[80];
-  strcpy(lorepointer, "ello");
-  Room* a1 = new Room(lorepointer);
+  char* a1text = new char[80];
+  strcpy(a1text, "You are in room A1");
+  Room* a1 = new Room(a1text);
 
-  cout << "Lore: " << loretext << endl;
-  cout << "Info: " << *lorepointer << endl;
   
   //create items
-
+  char* item1 = new char[10];
+  strcpy(item1, "Book");
+  Item* thing1 = new Item(item1);
+  a1->addItem(thing1);
+  
   //starting room
   currentRoom = a1;
   
@@ -118,6 +119,7 @@ int main() {
       //
       cout << "go" << endl;
       currentRoom->getDescription();
+      //a1->getDescription();
       //      if (strcmp(endImput, "UP") == 0) {
 	//go up
       //}

@@ -6,12 +6,12 @@
 class Item {
  public:
   Item();
-  //
+  Item(char*);
   //~Item
   // never needed, could destory/make itenms if I wanted later
   char* getName();
  private:
-  char* name;
+  char* name = new char[10];
 };
 
 #endif
