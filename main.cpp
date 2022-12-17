@@ -67,67 +67,67 @@ int main() {
   //create rooms
   //a1
   char* a1text = new char[80];
-  strcpy(a1text, "You are in room A1");
+  strcpy(a1text, "You are in room A1, standing on a cloud?");
   Room* a1 = new Room(a1text);
   //a2
   char* a2text = new char[80];
-  strcpy(a2text, "You are in room A2");
+  strcpy(a2text, "You are in room A2, it is getting foggy, cloudy?");
   Room* a2 = new Room(a2text);
   //a3
   char* a3text = new char[80];
-  strcpy(a3text, "You are in room A3");
+  strcpy(a3text, "You are in room A3, this seems to be more rock then cloud");
   Room* a3 = new Room(a3text);
   //a4
   char* a4text = new char[80];
-  strcpy(a4text, "You are in room A4");
+  strcpy(a4text, "You are in room A4, this cloud floor is soft, swimming or falling?");
   Room* a4 = new Room(a4text);
   //b1
   char* b1text = new char[80];
-  strcpy(b1text, "You are in room B1");
+  strcpy(b1text, "You are in room B1, The clouds shift to grasslands");
   Room* b1 = new Room(b1text);
   //b2
   char* b2text = new char[80];
-  strcpy(b2text, "You are in room B2");
+  strcpy(b2text, "You are in room B2, Sitting in the clouds is a CD player DROP a CD?");
   Room* b2 = new Room(b2text);
   //b3
   char* b3text = new char[80];
-  strcpy(b3text, "You are in room B3");
+  strcpy(b3text, "You are in room B3, full of blank boring clouds");
   Room* b3 = new Room(b3text);
   //b4
   char* b4text = new char[80];
-  strcpy(b4text, "You are in room B4");
+  strcpy(b4text, "You are in room B4, is this a lighting storm from above?");
   Room* b4 = new Room(b4text);
   //c1
   char* c1text = new char[80];
-  strcpy(c1text, "You are in room C1");
+  strcpy(c1text, "You are in room C1, forcast is clouds till end of time");
   Room* c1 = new Room(c1text);
   //c2
   char* c2text = new char[80];
-  strcpy(c2text, "You are in room C2");
+  strcpy(c2text, "You are in room C2, a magical cloud castle!");
   Room* c2 = new Room(c2text);
   //c3
   char* c3text = new char[80];
-  strcpy(c3text, "You are in room C3");
+  strcpy(c3text, "You are in room C3, there is a river in the sky? Nothings makes sense");
   Room* c3 = new Room(c3text);
   //c4
   char* c4text = new char[80];
-  strcpy(c4text, "You are in room C4");
+  strcpy(c4text, "You are in room C4, There are arcane markings, and a slot for a crystal");
   Room* c4 = new Room(c4text);
   //d1
   char* d1text = new char[80];
-  strcpy(d1text, "You are in room D1");
+  strcpy(d1text, "You are in room D1, How did you get here? Why are there clouds?");
   Room* d1 = new Room(d1text);
   //d2
   char* d2text = new char[80];
-  strcpy(d2text, "You are in room D2");
+  strcpy(d2text, "You are in room D2, The cloud floor flashes pretty lights");
   Room* d2 = new Room(d2text);
   //d3
   char* d3text = new char[80];
-  strcpy(d3text, "You are in room D3");
+  strcpy(d3text, "You are in room D3, This trip in the clouds goes on endlessly");
   Room* d3 = new Room(d3text);
   //d4
   char* d4text = new char[80];
-  strcpy(d4text, "You are in room D4");
+  strcpy(d4text, "You are in room D4, Why is there a CD case in a cloud?");
   Room* d4 = new Room(d4text);
   
   //create exits (manual since I keep mixing up rooms)
@@ -230,22 +230,22 @@ int main() {
   char* item2 = new char[10];
   strcpy(item2, "CRYSTAL");
   Item* thing2 = new Item(item2);
-  a1->addItem(thing2);
+  a3->addItem(thing2);
   //item 3: MAGIC (why is magic an item? becasue I said so
   char* item3 = new char[10];
   strcpy(item3, "MAGIC");
   Item* thing3 = new Item(item3);
-  a1->addItem(thing3);
+  c2->addItem(thing3);
   //item 4: GOAT (initial idea was bison in US history)
   char* item4 = new char[10];
   strcpy(item4, "GOAT");
   Item* thing4 = new Item(item4);
-  a1->addItem(thing4);
+  b1->addItem(thing4);
   //item 5: CD
   char* item5 = new char[10];
   strcpy(item5, "CD"); //music disk or something
   Item* thing5 = new Item(item5);
-  a1->addItem(thing5);
+  d4->addItem(thing5);
   
   //starting room
   currentRoom = a1;
@@ -259,11 +259,34 @@ int main() {
   //write a better intro? I like this one though...
   cout << "Xuul is a fun game, type HELP!" << endl;
   
-  //begin user input
+  //begin while loop for user input
   while (quit == false) {
-    //reprint (or inital)
+    //reprint (or inital) room
     currentRoom->getDescription();
+
+    //check win conditions
+    if (currentRoom == c4) {
+      if (currentRoom->compItem(item2) == true && //crystal
+	  inventory->compItem(item3) == true) { //magic
+	cout << "a PORTAL opens" << endl;
+	//portal opens will apear multiple since I don't want
+	//to add another item and if I throw one though it is
+	//lost (actually it goes to inventory but same idea)
+	//show inventory on win
+	c4->addExit(inventory);
+      }
+    }
     
+    if (currentRoom == b2) {
+      if (currentRoom->compItem(item5) == true) { //CD
+	cout << "Music starts playing" << endl;
+	cout << "You feel like you could spend enternity here" << endl;
+	cout << "type QUIT to exit game" << endl;
+      }
+    }
+    
+    
+    //user input
     //char input[80];
     cin.getline(input, 80);
     
@@ -331,7 +354,7 @@ int main() {
 	endLocation = 4;
       }
       //go direction
-      cout << endLocation;
+      //cout << endLocation;
       currentRoom = currentRoom->getExit(endLocation);
       
     }
@@ -346,6 +369,14 @@ int main() {
     }
     else {
       cout << "command not recognized, type HELP" << endl;
+    }
+
+    //we won
+    if (currentRoom == inventory) {
+      //quit
+      quit = true;
+      //win message
+      cout << "Well Done! You Have WON" << endl;
     }
   }
 }

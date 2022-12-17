@@ -19,6 +19,9 @@ class Room {
   void getDescription();
   //I would say char* but just having the room describe iself
   void addItem(Item*);
+  //compitem added to check win condition
+  //returns true if name of item is same as an item in room
+  bool compItem(char*);
   void removeItem(char*, Room*);
   //decided to make all exits added though fucnction
   //more start code needed but can have new exits open

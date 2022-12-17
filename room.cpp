@@ -51,7 +51,7 @@ void Room::getDescription() {
     else if (a == 4) {
       cout << "PORTAL";
     }
-    cout << endl;
+    cout << " ";
   }
   cout << " " << endl;
 }
@@ -83,4 +83,15 @@ void Room::removeItem(char* thing, Room* inventory) {
       itemList.erase(itemList.begin()+a);
     }
   }
+}
+
+bool Room::compItem(char* thing) {
+  //like delete go thought list
+  for (int a = 0; a < itemList.size(); a++) {
+    if (strcmp((itemList[a]->getName()), thing) == 0) {
+      //found it
+      return(true);
+    }
+  }
+  return(false);
 }

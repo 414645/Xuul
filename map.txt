@@ -1,0 +1,30 @@
+This is my Map for my Zuul GAME:
+(the arrows wrap to other side of map)
+The idea is an endless plane to wander through
+Descriptions would be longer but I 80 is not that long
+and I am NOT changing it
+
+A1 has BOOK
+A3 has CRYSTAL
+B1 has GOAT
+C2 has MAGIC
+D4 has CD
+	
+       ^    ^    ^    ^
+     ---------------------
+  <  | A1 | B1 | C1 | D1 | >
+ ---------------------
+  <  | A2 | B2 | C2 | D2 | >
+ ---------------------
+  <  | A3 | B3 | C3 | D3 | >
+ ---------------------
+  <  | A4 | B4 | C4 | D4 | >
+       ,    ,    ,    ,
+
+You will get a win message if you DROP the CD on B2
+DROP the CRYSTAL and have MAGIC to create PORTAL at c4
+Going though PORTAL truely wins
+
+I wanted to add things going west form a1 ends up at c3
+But I got lost myself and had to add the grid letter# things
+So all you get is a neverending grid
