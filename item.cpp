@@ -12,7 +12,6 @@ Item::Item() {
 
 Item::Item(char* newName) {
   strcpy(name, newName);
-  cout << name << endl;
 }
 
 char* Item::getName() {

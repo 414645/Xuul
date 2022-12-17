@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+//The item class just stores the name of the item
+
 class Item {
  public:
   Item();
